@@ -1,15 +1,44 @@
 {{ define "main" }}
 
   <div class="mw6 center ph3 pv4">
+    <div>
+
+    </div>
     <h1 class="f2 lh-title b mb3">{{.Title}}</h1>
     <div class="flex justify-between grey-3">
-      <p>{{ .Date.Format "Mon, Jan 2, 2006" }}</p>
-      <p>Read in {{ .ReadingTime }} minutes</p>
+      <p class="f7 mid-gray">{{ .Date.Format "JAN 2, 2006" }}</p>
     </div>
-    <div class="cms mw6">
+
+    <div class="lh-copy cms mw6">
       <p>{{ .Description }}</p>
-      {{ if .Params.image }}<img src="{{ .Params.image }}" alt="{{ .Title }}" />{{ end }}
+
+      <div class="mv2">
+       {{ if .Params.image }}<img class="mv3" src="{{ .Params.image }}" alt="{{ .Title }}" />{{ end }}</div>
       {{ .Content }}
+
     </div>
+
+<p class="f7 ttu b mid-gray pt4">Tags
+    </p>
+      <ul class="lh-copy b list pl0 ma0">
+        {{ range .Params.tags }}
+      <li class="ma0"><a class="link green dim" href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a> </li>
+        {{ end }}
+      </ul>
+
+        <p class="f7 ttu b pt3 mid-gray">Categories
+      </p>
+        <ul class="lh-copy b list pb3 pl0 ma0">
+          {{ range .Params.categories }}
+        <li class="ma0"><a class="link green dim" href="{{ "/categories/" | relLangURL }}{{ . | urlize }}">{{ . }}</a> </li>
+          {{ end }}
+        </ul>
+
+<div class="pt4 pb6">
+        <a class="f6 grow no-underline dib green" href="/"> &larr; Back To Homepage</a>
+</div>
+</div>
+
+
   </div>
 {{ end }}
